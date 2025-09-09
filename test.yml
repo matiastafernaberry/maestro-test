@@ -1,0 +1,12 @@
+appId: com.cencosud.jumbo.co.test
+tags:
+  - android
+  - passing
+---
+# LOGIN HAPPY PATH
+- tapOn: Ingresa tu correo
+- inputText: "QAnuevo-stg@yopmail.com"
+- tapOn: Continuar
+- tapOn: Contraseña
+- inputText: "Test1234"
+- tapOn: Iniciar sesión
