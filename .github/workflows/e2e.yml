@@ -10,7 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install p7zip (7z)
-        run: brew install p7zip
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y p7zip-full
 
       - name: Extract app bundle (.7z en root)
         shell: bash
