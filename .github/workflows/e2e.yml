@@ -9,22 +9,6 @@ jobs:
   ui-tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Install p7zip (7z)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y p7zip-full
-
-      - name: Extract app bundle (.7z en root)
-        shell: bash
-        run: |
-          set -euo pipefail
-          FILE="${APP_7Z_NAME:-app.7z}"
-          [ -f "$FILE" ] || { echo "❌ No se encontró $FILE en el root"; exit 1; }
-          mkdir -p unzipped
-          echo "🧩 Descomprimiendo $FILE → ./unzipped"
-          7z x -y "$FILE" -ounzipped
-          echo "📂 Contenido:"
-          find unzipped -maxdepth 2 -type f -print
 
       - name: Check out repository
         uses: actions/checkout@v2
@@ -32,7 +16,7 @@ jobs:
       - name: Run UI Tests with Maestro
         uses: theolm/maestro-run@v0.2.0-alpha
         with:
-          apk-path: "./unzipped/app.apk"
+          apk-path: "app.apk"
           test-path: "test.yml"
           emulator-api: "34"
           emulator-profile: "pixel_8_pro"
